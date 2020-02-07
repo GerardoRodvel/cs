@@ -25,7 +25,7 @@ SECRET_KEY = '42w$0y*zn-%suuv4g$$l$7&944@p%_pcib26&0ii&p9kxqyds0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','52.71.245.244']
+ALLOWED_HOSTS = ['127.0.0.1','54.175.213.135']
 
 
 # Application definition
@@ -37,7 +37,26 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'Login',
+    'rest_framework.authtoken',
 ]
+
+SITE_ID = 1
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES':('rest_framework.permissions.IsAuthenticated',),
+    'DEFAULT_AUTHENTICATION_CLASSES':('rest_framework.authentication.TokenAuthentication',),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100,
+}
+
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'POST',
+    'PUT',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,10 +95,10 @@ WSGI_APPLICATION = 'CS.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'rodvel_db',
+        'NAME': 'cs_classroom_db',
         'USER': 'postgres',
         'PASSWORD': 'rodvel123',
-        'HOST': 'rodvel-instance.cl7tcrokg3pw.us-east-1.rds.amazonaws.com',
+        'HOST': 'cs-classroom.cmym7zdx3mkg.us-east-1.rds.amazonaws.com',
         'PORT': '5432'
     }
 }
@@ -107,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-mx'
 
 TIME_ZONE = 'UTC'
 
