@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,10 +21,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '42w$0y*zn-%suuv4g$$l$7&944@p%_pcib26&0ii&p9kxqyds0'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = ['127.0.0.1','54.175.213.135']
 
@@ -95,11 +96,11 @@ WSGI_APPLICATION = 'CS.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cs_classroom_db',
-        'USER': 'postgres',
-        'PASSWORD': 'rodvel123',
-        'HOST': 'cs-classroom.cmym7zdx3mkg.us-east-1.rds.amazonaws.com',
-        'PORT': '5432'
+        'EMAIL_NAME': config('EMAIL_NAME', default=''),
+        'EMAIL_USER': config('EMAIL_USER', default=''),
+        'EMAIL_PASSWORD': config('EMAIL_PASSWORD', default=''),
+        'EMAIL_HOST': config('EMAIL_HOST',default=''),
+        'EMAIL_PORT': config('EMAIL_PORT',default=5432, cast=int),
     }
 }
 
