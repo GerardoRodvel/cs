@@ -12,7 +12,7 @@ from rest_framework import generics
 #importar modelo lunes 
 from Login.models import Example2
 from Login.serializer import Example2Serializers
-
+  
 
 #clase de lunes 
 class ExampleList2(APIView):
